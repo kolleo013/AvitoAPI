@@ -1,0 +1,14 @@
+@startuml
+!include <C4/C4_Container>
+Person(customer, "Клиент", "Просматривает меню и оформляет заказ")
+Person(operator, "Сотрудник кафе", "Принимает заказы")
+System_Boundary(kitchen, "Авито.Кухня MVP") {
+Container(api, "Основное API", "Python, FastAPI", "Меню, заказы и статусы")
+Container(cafe, "Сервис демо-кафе", "Python, FastAPI", "Получение и принятие заказов")
+ContainerDb(db, "База данных", "SQLite", "Меню и заказы")
+}
+Rel(customer, api, "Меню, создание и просмотр заказа", "HTTP/JSON")
+Rel(operator, cafe, "Просмотр и подтверждение", "HTTP/JSON + токен")
+Rel(cafe, api, "Получает и подтверждает заказы", "HTTP/JSON + токен")
+Rel(api, db, "Читает и записывает", "SQL")
+@enduml

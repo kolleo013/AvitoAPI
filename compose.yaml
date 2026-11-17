@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DB_PATH: /service/data/kitchen.db
+      CAFE_TOKEN: ${CAFE_TOKEN:-local-demo-token}
+    volumes:
+      - kitchen-data:/service/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 3s
+      timeout: 2s
+      retries: 15
+  cafe:
+    build: .
+    command: uvicorn app.cafe:app --host 0.0.0.0 --port 8001
+    ports:
+      - "127.0.0.1:8001:8001"
+    environment:
+      API_URL: http://api:8000
+      CAFE_TOKEN: ${CAFE_TOKEN:-local-demo-token}
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  kitchen-data:
