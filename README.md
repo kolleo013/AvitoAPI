@@ -2,8 +2,7 @@
 
 Решение тестового задания Авито для стажёра Backend (осень 2026) в рамках КТ2 «Примерка роли».
 
-[Исходное задание Авито](https://github.com/avito-tech/tech-internship/blob/main/Tech%20Internships/Backend/Backend-trainee-assignment-autumn-2026/Backend-trainee-assignment-autumn-2026.md/>
-)
+[Исходное задание Авито](https://github.com/avito-tech/tech-internship/blob/main/Tech%20Internships/Backend/Backend-trainee-assignment-autumn-2026/Backend-trainee-assignment-autumn-2026.md)
 
 ## Сценарий
 
